@@ -26,6 +26,8 @@ namespace CookieRunDJBFConverter
                 if (header.DataSuffixSize > 0xF)
                     header.DataSuffixSize = 0;
 
+                Console.WriteLine($"\tDetected: [Version: {header.Version:X4} Flags: {header.Flags.Prettify()}]");
+
                 // copy out the remaining data and append the suffix bytes
                 var dataSize = (int)(fs.Length - fs.Position);
                 var buffer = new byte[dataSize + header.DataSuffixSize];

@@ -36,14 +36,14 @@ namespace CookieRunDJBFConverter
                 if (options.Mode == Mode.Decrypt)
                 {
                     ext = ".bin";
+                    Console.WriteLine($"Decrypting {Path.GetFileName(file)}");
                     buffer = DJBFConverter.Decrypt(file);
-                    Console.WriteLine($"Decrypted {Path.GetFileName(file)}");
                 }
                 else
                 {
                     ext = ".djb";
+                    Console.WriteLine($"Encrypting {Path.GetFileName(file)}");
                     buffer = DJBFConverter.Encrypt(file, options.Version, options.Flags);
-                    Console.WriteLine($"Encrypted {Path.GetFileName(file)}");
                 }
 
                 File.WriteAllBytes(Path.ChangeExtension(file, ext), buffer);

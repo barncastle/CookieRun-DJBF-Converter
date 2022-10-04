@@ -1,5 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
+using static CookieRunDJBFConverter.DJBFConverter;
 
 namespace CookieRunDJBFConverter
 {
@@ -29,6 +32,19 @@ namespace CookieRunDJBFConverter
             handle.Free();
 
             reader.Write(buffer, 0, buffer.Length);
+        }
+
+        public static string Prettify(this Flags flags)
+        {
+            var sb = new StringBuilder(20);
+
+            foreach(var flag in (Flags[])Enum.GetValues(typeof(Flags)))
+            {
+                if (flags.HasFlag(flag))
+                    sb.Append(flag + ", ");
+            }
+
+            return sb.ToString(0, sb.Length - 2);
         }
     }
 }
