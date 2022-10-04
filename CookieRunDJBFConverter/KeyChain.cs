@@ -80,7 +80,7 @@ namespace CookieRunDJBFConverter
 
     public enum EncryptionKeys
     {
-        Kakao = 1,
-        QQ = 2
+        Kakao = 0,
+        QQ = 1
     }
 }
