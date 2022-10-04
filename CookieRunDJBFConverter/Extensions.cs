@@ -38,13 +38,13 @@ namespace CookieRunDJBFConverter
         {
             var sb = new StringBuilder(20);
 
-            foreach(var flag in (Flags[])Enum.GetValues(typeof(Flags)))
+            foreach (var flag in (Flags[])Enum.GetValues(typeof(Flags)))
             {
                 if (flags.HasFlag(flag))
                     sb.Append(flag + ", ");
             }
 
-            return sb.ToString(0, sb.Length - 2);
+            return sb.ToString(0, Math.Max(sb.Length - 2, 0));
         }
     }
 }
