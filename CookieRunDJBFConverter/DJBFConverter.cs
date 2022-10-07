@@ -13,6 +13,10 @@ namespace CookieRunDJBFConverter
             {
                 var header = fs.Read<Header>();
 
+                // check for the DJB magic
+                if (header.Magic != 0x46424A44)
+                    return null;
+
                 // swap endian
                 header.Version = (ushort)((header.Version >> 8) | ((header.Version & 0xFF) << 8));
 
