@@ -1,6 +1,7 @@
 ﻿using CommandLine;
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CookieRunDJBFConverter
@@ -45,6 +46,7 @@ namespace CookieRunDJBFConverter
                     ext = ".bin";
                     Console.WriteLine($"Decrypting {Path.GetFileName(file)}");
                     buffer = DJBFConverter.Decrypt(file);
+                    buffer = Encoding.Convert(Encoding.UTF8, Encoding.UTF8, buffer);
                 }
                 else
                 {
