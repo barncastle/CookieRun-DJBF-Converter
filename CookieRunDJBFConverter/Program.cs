@@ -16,10 +16,17 @@ namespace CookieRunDJBFConverter
                 s.AutoVersion = false;
             });
 
-            parser
+            try
+            {
+                parser
                 .ParseArguments<Options>(args)
                 .MapResult(Run, Task.FromResult)
                 .Wait();
+            }
+            catch(AggregateException ex)
+            {
+                throw ex.GetBaseException();
+            }
         }
 
         static async Task Run(Options options)
@@ -46,7 +53,8 @@ namespace CookieRunDJBFConverter
                     buffer = DJBFConverter.Encrypt(file, options.Version, options.Flags);
                 }
 
-                File.WriteAllBytes(Path.ChangeExtension(file, ext), buffer);
+                if (buffer != null)
+                    File.WriteAllBytes(Path.ChangeExtension(file, ext), buffer);
             }
 
             await Task.CompletedTask;
