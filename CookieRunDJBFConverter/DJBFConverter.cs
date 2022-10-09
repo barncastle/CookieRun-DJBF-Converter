@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace CookieRunDJBFConverter
 {
@@ -13,7 +14,7 @@ namespace CookieRunDJBFConverter
             {
                 var header = fs.Read<Header>();
 
-                // check for the DJB magic
+                // check for the DJBF magic
                 if (header.Magic != 0x46424A44)
                     return null;
 
@@ -51,13 +52,15 @@ namespace CookieRunDJBFConverter
                 if (checksum != header.Checksum)
                     throw new Exception($"Checksum :: {checksum:X8} != {header.Checksum:X8}");
 
-                return buffer;
+                // convert to UTF8
+                return Encoding.Convert(Encoding.ASCII, Encoding.UTF8, buffer);
             }
         }
 
         public static byte[] Encrypt(string path, ushort version, Flags flags)
         {
-            var buffer = File.ReadAllBytes(path);
+            // read and convert to ASCII
+            var buffer = Encoding.Convert(Encoding.UTF8, Encoding.ASCII, File.ReadAllBytes(path));
 
             var header = new Header
             {

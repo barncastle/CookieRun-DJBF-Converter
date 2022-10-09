@@ -24,7 +24,7 @@ namespace CookieRunDJBFConverter
                 .MapResult(Run, Task.FromResult)
                 .Wait();
             }
-            catch(AggregateException ex)
+            catch (AggregateException ex)
             {
                 throw ex.GetBaseException();
             }
@@ -46,7 +46,6 @@ namespace CookieRunDJBFConverter
                     ext = ".bin";
                     Console.WriteLine($"Decrypting {Path.GetFileName(file)}");
                     buffer = DJBFConverter.Decrypt(file);
-                    buffer = Encoding.Convert(Encoding.UTF8, Encoding.UTF8, buffer);
                 }
                 else
                 {
