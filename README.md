@@ -6,8 +6,8 @@ Place this executable in a folder and run with the appropriate commands. It will
 
 **NOTE** this tool will attempt to run on all files within a folder and does not validate if each files needs to or can be converted so will crash on invalid files. Additionally, output files will overwrite files of the same name.
 
-`.\cookierunconverter.exe -m decrypt -k kakao`  
-`.\cookierunconverter.exe -m encrypt -k kakao -v 1 -f "AES_ECB, FastLZ"`
+`.\CookieRunDJBFConverter.exe -m decrypt -k kakao`  
+`.\CookieRunDJBFConverter.exe -m encrypt -k kakao -v 1 -f "AES_ECB, FastLZ"`
 
 #### Arguments
 | Short Name | Long Name | Description | Required
